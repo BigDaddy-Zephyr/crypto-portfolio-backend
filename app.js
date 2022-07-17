@@ -20,6 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 var session = require('express-session');
+
+app.use(cors({origin: '*'}));
 app.use(
   session({
     key: 'sid',
@@ -30,7 +32,7 @@ app.use(
   }),
 );
 
-app.use(cors({origin: 'http://localhost:3000'}));
+
 
 
 app.use('/', indexRouter);
