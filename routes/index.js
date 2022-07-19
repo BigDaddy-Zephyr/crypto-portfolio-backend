@@ -172,7 +172,7 @@ router.get('/getstocks', async (req, res) => {
     }
   })
   
-  let listOfStocks = stocks.map(x=>x.name)
+  let listOfStocks = stocks.map(x=>x.messariId)
   
   let list=[...new Set(listOfStocks)] //generating list of unique stock names to retrieve price from api
     
@@ -184,7 +184,6 @@ router.get('/getstocks', async (req, res) => {
   let data = await Promise.all(dataPromises)
   for (let j=0;j<data.length; j++) {
     for(let i=0;i<stocks.length;i++){
-      // console.log(stocks[i].name)
       if(stocks[i].name == data[j].data.data.Asset.name){
         if(data[j].data.data.Asset.name==null){
           stocks[i].currentPrice=0;
