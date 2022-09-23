@@ -27,6 +27,12 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.post('/biometric',(req,res)=>{
+  console.log(req.body)
+  //store in db
+  res.send({status:"done"})
+})
+
 
 router.use(async (req, res, next) => {
   const user = await prisma.user.findFirst({where: { id:  req.session.userId }})
